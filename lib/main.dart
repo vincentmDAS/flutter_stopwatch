@@ -1,9 +1,17 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_stopwatch/stop_watch_notifier.dart';
+
+final stopWatchProvider = ChangeNotifierProvider<StopWatchNotifier>(
+  (ref) => StopWatchNotifier(),
+);
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,77 +24,80 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+class MyHomePage extends ConsumerWidget {
+  const MyHomePage({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
 
-class _MyHomePageState extends State<MyHomePage> {
-  Duration _stopWatchTimer = Duration.zero;
-  Timer? timer;
-
-  void runTimer() {
-    timer = Timer.periodic(
-      const Duration(milliseconds: 1),
-      (timer) {
-        setState(() {
-          _stopWatchTimer += const Duration(milliseconds: 10);
-          // TODO remove this
-          if (timer.tick == 5000) {
-            timer.cancel();
-          }
-        });
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              _stopWatchTimer.toString().substring(2, 10),
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Text(
+                myStopWatch.displayTime,
+                style: Theme.of(context).textTheme.headline2,
+              ),
+              Container(
+                color: Colors.amber,
+                height: MediaQuery.of(context).size.height * 0.2,
+                child: const SingleChildScrollView(
+                  child: Text('Lap'),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  FloatingActionButton(
+                    onPressed: () {
+                      myStopWatch.reset();
+                    },
+                    tooltip: 'Reset',
+                    child: const Icon(Icons.restore_outlined),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  FloatingActionButton(
+                    onPressed: () {
+                      //TODO
+                    },
+                    tooltip: 'Lap',
+                    child: const Icon(Icons.save),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  FloatingActionButton(
+                    onPressed: () {
+                      myStopWatch.run();
+                    },
+                    tooltip: 'Start',
+                    child: const Icon(Icons.play_arrow),
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  FloatingActionButton(
+                    onPressed: () {
+                      myStopWatch.stop();
+                    },
+                    tooltip: 'Stop',
+                    child: const Icon(Icons.stop),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              runTimer();
-            },
-            tooltip: 'Start',
-            child: const Icon(Icons.start),
-          ),
-          const SizedBox(
-            width: 20,
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              timer?.cancel();
-            },
-            tooltip: 'Stop',
-            child: const Icon(Icons.stop),
-          ),
-        ],
       ),
     );
   }
