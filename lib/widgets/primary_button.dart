@@ -31,10 +31,9 @@ class PrimaryButton extends StatelessWidget {
         onPressed: onPressed,
         child: Text(
           displayText,
-          style: TextStyle(
-            fontSize: 20,
-            color: isStartButton ? AppColors.mainGreen : AppColors.mainRed,
-          ),
+          style: isStartButton
+              ? AppStyles.buttonMainGreen
+              : AppStyles.buttonMainRed,
         ),
       ),
     );

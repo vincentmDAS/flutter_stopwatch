@@ -54,11 +54,7 @@ class TimerDisplay extends ConsumerWidget {
       child: Center(
         child: Text(
           myStopWatch.displayTime,
-          style: const TextStyle(
-            color: AppColors.mainBlack,
-            fontSize: 60,
-            fontWeight: FontWeight.w600,
-          ),
+          style: AppStyles.titleBoldBlack,
         ),
       ),
     );

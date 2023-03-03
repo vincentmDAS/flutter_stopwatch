@@ -21,3 +21,25 @@ class AppColors {
   static const Color mainGreen = Color(0xFF40EF5C);
   static const Color mainBlack = Color(0xFF040404);
 }
+
+class AppStyles {
+  AppStyles._();
+
+  static const TextStyle titleBoldBlack = TextStyle(
+    color: AppColors.mainBlack,
+    fontSize: 60,
+    fontWeight: FontWeight.w600,
+  );
+  static const TextStyle buttonMainGreen = TextStyle(
+    fontSize: 20,
+    color: AppColors.mainGreen,
+  );
+  static const TextStyle buttonMainRed = TextStyle(
+    fontSize: 20,
+    color: AppColors.mainRed,
+  );
+  static const TextStyle buttonMainBlack = TextStyle(
+    fontSize: 20,
+    color: AppColors.mainBlack,
+  );
+}
