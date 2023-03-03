@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_stopwatch/constant.dart';
 import 'package:flutter_stopwatch/stop_watch_notifier.dart';
 
 final stopWatchProvider = ChangeNotifierProvider<StopWatchNotifier>(
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: AppStrings.flutterStopWatch,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -46,8 +47,7 @@ class MyHomePage extends ConsumerWidget {
                 myStopWatch.displayTime,
                 style: Theme.of(context).textTheme.headline2,
               ),
-              Container(
-                color: Colors.deepPurpleAccent,
+              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.3,
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: SingleChildScrollView(
@@ -68,40 +68,32 @@ class MyHomePage extends ConsumerWidget {
                 children: [
                   FloatingActionButton(
                     onPressed: () {
-                      myStopWatch.reset();
+                      myStopWatch.isRunning
+                          ? myStopWatch.lap()
+                          : myStopWatch.reset();
                     },
-                    tooltip: 'Reset',
-                    child: const Icon(Icons.restore_outlined),
+                    tooltip: myStopWatch.isRunning
+                        ? AppStrings.lap
+                        : AppStrings.reset,
+                    child: myStopWatch.isRunning
+                        ? const Icon(Icons.save)
+                        : const Icon(Icons.restore_outlined),
                   ),
                   const SizedBox(
                     width: 20,
                   ),
                   FloatingActionButton(
                     onPressed: () {
-                      myStopWatch.lap();
+                      myStopWatch.isRunning
+                          ? myStopWatch.stop()
+                          : myStopWatch.run();
                     },
-                    tooltip: 'Lap',
-                    child: const Icon(Icons.save),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () {
-                      myStopWatch.run();
-                    },
-                    tooltip: 'Start',
-                    child: const Icon(Icons.play_arrow),
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  FloatingActionButton(
-                    onPressed: () {
-                      myStopWatch.stop();
-                    },
-                    tooltip: 'Stop',
-                    child: const Icon(Icons.stop),
+                    tooltip: myStopWatch.isRunning
+                        ? AppStrings.stop
+                        : AppStrings.start,
+                    child: myStopWatch.isRunning
+                        ? const Icon(Icons.stop)
+                        : const Icon(Icons.play_arrow),
                   ),
                 ],
               ),
