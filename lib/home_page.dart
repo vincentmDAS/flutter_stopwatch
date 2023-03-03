@@ -4,6 +4,7 @@ import 'package:flutter_stopwatch/widgets/generic_spacing.dart';
 
 import 'model/stop_watch_notifier.dart';
 import 'utility/constant.dart';
+import 'widgets/lap_list_tile.dart';
 import 'widgets/primary_button.dart';
 import 'widgets/secondary_button.dart';
 
@@ -71,7 +72,6 @@ class Laps extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
-
     return SizedBox(
       height: MediaQuery.of(context).size.height * 0.3,
       width: MediaQuery.of(context).size.width * 0.9,
@@ -80,12 +80,12 @@ class Laps extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             if (myStopWatch.isActive)
-              ListTile(
+              LapListTile(
                 leading: Text('Lap ${myStopWatch.lapTimes.length + 1}'),
                 trailing: Text(myStopWatch.displayTime),
               ),
             for (final lapTime in myStopWatch.lapTimes.reversed)
-              ListTile(
+              LapListTile(
                 key: UniqueKey(),
                 leading: Text(
                   'Lap ${myStopWatch.lapTimes.indexOf(lapTime) + 1}',
