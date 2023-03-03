@@ -20,6 +20,7 @@ class AppColors {
   static const Color mainRed = Color(0xFFEB0A72);
   static const Color mainGreen = Color(0xFF40EF5C);
   static const Color mainBlack = Color(0xFF040404);
+  static const Color mainGrey = Color(0xFFD6D6D7);
 }
 
 class AppStyles {
@@ -41,5 +42,9 @@ class AppStyles {
   static const TextStyle buttonMainBlack = TextStyle(
     fontSize: 20,
     color: AppColors.mainBlack,
+  );
+  static const TextStyle buttonMainGrey = TextStyle(
+    fontSize: 20,
+    color: AppColors.mainGrey,
   );
 }

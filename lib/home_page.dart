@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_stopwatch/widgets/generic_spacing.dart';
 
 import 'model/stop_watch_notifier.dart';
 import 'utility/constant.dart';
@@ -22,6 +23,7 @@ class HomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
+              VerticalSpace(10),
               TimerDisplay(),
               Laps(),
               Buttons(),
@@ -43,7 +45,7 @@ class TimerDisplay extends ConsumerWidget {
     final StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
 
     return Container(
-      height: MediaQuery.of(context).size.height * 0.2,
+      height: MediaQuery.of(context).size.height * 0.25,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: const BoxDecoration(
         color: AppColors.backgroundGrey,
