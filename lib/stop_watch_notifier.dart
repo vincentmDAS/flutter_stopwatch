@@ -8,6 +8,7 @@ class StopWatchNotifier extends ChangeNotifier {
   List<String> _lapTimes = [];
   Duration _stopWatchTimer = Duration.zero;
   Timer? _timer;
+  bool _isActive = false;
 
   String get displayTime {
     if (_stopWatchTimer == Duration.zero) {
@@ -20,6 +21,7 @@ class StopWatchNotifier extends ChangeNotifier {
 
   List<String> get lapTimes => _lapTimes;
   bool get isRunning => _timer?.isActive ?? false;
+  bool get isActive => _isActive;
 
   void lap() {
     _lapTimes.add(displayTime);
@@ -30,6 +32,7 @@ class StopWatchNotifier extends ChangeNotifier {
     _stopWatchTimer = Duration.zero;
     _timer?.cancel();
     _lapTimes = [];
+    _isActive = false;
     notifyListeners();
   }
 
@@ -39,12 +42,16 @@ class StopWatchNotifier extends ChangeNotifier {
   }
 
   void run() {
+    _isActive = true;
     _timer = Timer.periodic(
       const Duration(milliseconds: 1),
       (timer) {
         _stopWatchTimer += const Duration(milliseconds: 1);
+        updateCurrentLastLapTime();
         notifyListeners();
       },
     );
   }
+
+  void updateCurrentLastLapTime() {}
 }

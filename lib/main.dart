@@ -53,10 +53,18 @@ class MyHomePage extends ConsumerWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      for (final lapTime in myStopWatch.lapTimes)
+                      if (myStopWatch.isActive)
                         ListTile(
+                          leading:
+                              Text('Lap ${myStopWatch.lapTimes.length + 1}'),
+                          trailing: Text(myStopWatch.displayTime),
+                        ),
+                      for (final lapTime in myStopWatch.lapTimes.reversed)
+                        ListTile(
+                          key: UniqueKey(),
                           leading: Text(
-                              'Lap ${myStopWatch.lapTimes.indexOf(lapTime) + 1}'),
+                            'Lap ${myStopWatch.lapTimes.indexOf(lapTime) + 1}',
+                          ),
                           trailing: Text(lapTime),
                         ),
                     ],
