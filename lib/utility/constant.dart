@@ -28,8 +28,8 @@ class AppStyles {
 
   static const TextStyle titleBoldBlack = TextStyle(
     color: AppColors.mainBlack,
-    fontSize: 60,
-    fontWeight: FontWeight.w600,
+    fontSize: 75,
+    fontWeight: FontWeight.w400,
   );
   static const TextStyle buttonMainGreen = TextStyle(
     fontSize: 20,
@@ -46,5 +46,10 @@ class AppStyles {
   static const TextStyle buttonMainGrey = TextStyle(
     fontSize: 20,
     color: AppColors.mainGrey,
+  );
+  static const TextStyle tileTextBlack = TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: AppColors.mainBlack,
   );
 }

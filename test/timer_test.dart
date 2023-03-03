@@ -7,17 +7,12 @@ void main() {
     expect(AppStrings.zeroTimeDisplay, Helper.formatDisplayTime(Duration.zero));
   });
 
-  test('Should return correct number format when duration is given', () {
+  test('Should return correct number format when duration is valid', () {
     expect(
-      '02:05.00',
+      '01:02.30',
       Helper.formatDisplayTime(
-        const Duration(minutes: 2, seconds: 5),
+        const Duration(minutes: 1, seconds: 2, milliseconds: 300),
       ),
     );
-  });
-
-  test('Should return correct zero format when duration is zero', () {
-    Duration duration;
-    expect(AppStrings.zeroTimeDisplay, Helper.formatDisplayTime(duration));
   });
 }

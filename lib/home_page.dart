@@ -21,14 +21,20 @@ class HomePage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: AppColors.backgroundWhite,
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              VerticalSpace(10),
-              TimerDisplay(),
-              Laps(),
-              Buttons(),
-            ],
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+              horizontal: 15.0,
+              vertical: 25.0,
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: const [
+                VerticalSpace(5),
+                TimerDisplay(),
+                Laps(),
+                Buttons(),
+              ],
+            ),
           ),
         ),
       ),
@@ -81,16 +87,14 @@ class Laps extends ConsumerWidget {
           children: [
             if (myStopWatch.isActive)
               LapListTile(
-                leading: Text('Lap ${myStopWatch.lapTimes.length + 1}'),
-                trailing: Text(myStopWatch.displayTime),
+                leadingText: 'Lap ${myStopWatch.lapTimes.length + 1}',
+                trailingText: myStopWatch.displayTime,
               ),
             for (final lapTime in myStopWatch.lapTimes.reversed)
               LapListTile(
                 key: UniqueKey(),
-                leading: Text(
-                  'Lap ${myStopWatch.lapTimes.indexOf(lapTime) + 1}',
-                ),
-                trailing: Text(lapTime),
+                leadingText: 'Lap ${myStopWatch.lapTimes.indexOf(lapTime) + 1}',
+                trailingText: lapTime,
               ),
           ],
         ),
@@ -109,7 +113,7 @@ class Buttons extends ConsumerWidget {
     final StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
 
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         SecondaryButton(
           displayText:

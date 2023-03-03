@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 
+import '../utility/constant.dart';
+
 class LapListTile extends StatelessWidget {
   const LapListTile({
     super.key,
-    required this.leading,
-    required this.trailing,
+    required this.leadingText,
+    required this.trailingText,
   });
-  final Widget leading;
-  final Widget trailing;
+  final String leadingText;
+  final String trailingText;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,8 +17,14 @@ class LapListTile extends StatelessWidget {
       children: [
         ListTile(
           visualDensity: const VisualDensity(vertical: -4),
-          leading: leading,
-          trailing: trailing,
+          leading: Text(
+            leadingText,
+            style: AppStyles.tileTextBlack,
+          ),
+          trailing: Text(
+            trailingText,
+            style: AppStyles.tileTextBlack,
+          ),
         ),
         const Divider()
       ],
