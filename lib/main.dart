@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
       const Duration(milliseconds: 1),
       (timer) {
         setState(() {
-          _stopWatchTimer += const Duration(milliseconds: 1);
+          _stopWatchTimer += const Duration(milliseconds: 10);
           // TODO remove this
           if (timer.tick == 5000) {
             timer.cancel();
@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              '${_stopWatchTimer.inMinutes.toString().padLeft(2, '0')}:${(_stopWatchTimer.inMilliseconds / 1000).toString()}',
+              _stopWatchTimer.toString().substring(2, 10),
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
