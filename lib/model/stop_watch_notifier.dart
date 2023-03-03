@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_stopwatch/constant.dart';
-import 'package:flutter_stopwatch/helper.dart';
+import 'package:flutter_stopwatch/utility/constant.dart';
+import 'package:flutter_stopwatch/utility/helper.dart';
 
 class StopWatchNotifier extends ChangeNotifier {
   List<String> _lapTimes = [];
