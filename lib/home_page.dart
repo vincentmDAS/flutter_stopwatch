@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'main.dart';
 import 'model/stop_watch_notifier.dart';
 import 'utility/constant.dart';
 import 'widgets/primary_button.dart';
@@ -11,51 +10,91 @@ final stopWatchProvider = ChangeNotifierProvider<StopWatchNotifier>(
   (ref) => StopWatchNotifier(),
 );
 
-class HomePage extends ConsumerWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
-
+  Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: AppColors.backgroundWhite,
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text(
-                myStopWatch.displayTime,
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.3,
-                width: MediaQuery.of(context).size.width * 0.9,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      if (myStopWatch.isActive)
-                        ListTile(
-                          leading:
-                              Text('Lap ${myStopWatch.lapTimes.length + 1}'),
-                          trailing: Text(myStopWatch.displayTime),
-                        ),
-                      for (final lapTime in myStopWatch.lapTimes.reversed)
-                        ListTile(
-                          key: UniqueKey(),
-                          leading: Text(
-                            'Lap ${myStopWatch.lapTimes.indexOf(lapTime) + 1}',
-                          ),
-                          trailing: Text(lapTime),
-                        ),
-                    ],
-                  ),
-                ),
-              ),
-              const Buttons(),
+            children: const [
+              TimerDisplay(),
+              Laps(),
+              Buttons(),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class TimerDisplay extends ConsumerWidget {
+  const TimerDisplay({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
+
+    return Container(
+      height: MediaQuery.of(context).size.height * 0.2,
+      width: MediaQuery.of(context).size.width * 0.9,
+      decoration: const BoxDecoration(
+        color: AppColors.backgroundGrey,
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
+      child: Center(
+        child: Text(
+          myStopWatch.displayTime,
+          style: const TextStyle(
+            color: AppColors.mainBlack,
+            fontSize: 60,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Laps extends ConsumerWidget {
+  const Laps({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
+
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.3,
+      width: MediaQuery.of(context).size.width * 0.9,
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (myStopWatch.isActive)
+              ListTile(
+                leading: Text('Lap ${myStopWatch.lapTimes.length + 1}'),
+                trailing: Text(myStopWatch.displayTime),
+              ),
+            for (final lapTime in myStopWatch.lapTimes.reversed)
+              ListTile(
+                key: UniqueKey(),
+                leading: Text(
+                  'Lap ${myStopWatch.lapTimes.indexOf(lapTime) + 1}',
+                ),
+                trailing: Text(lapTime),
+              ),
+          ],
         ),
       ),
     );
@@ -69,7 +108,7 @@ class Buttons extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
+    final StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
