@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 class StopWatchNotifier extends ChangeNotifier {
+  List<String> _lapTimes = [];
   Duration _stopWatchTimer = Duration.zero;
   Timer? timer;
-
-  StopWatchNotifier();
 
   String get displayTime {
     if (_stopWatchTimer == Duration.zero) {
@@ -17,9 +16,17 @@ class StopWatchNotifier extends ChangeNotifier {
     return _stopWatchTimer.toString().substring(2, 10);
   }
 
+  List<String> get lapTimes => _lapTimes;
+
+  void lap() {
+    _lapTimes.add(displayTime);
+    notifyListeners();
+  }
+
   void reset() {
     _stopWatchTimer = Duration.zero;
     timer?.cancel();
+    _lapTimes = [];
     notifyListeners();
   }
 
@@ -33,10 +40,6 @@ class StopWatchNotifier extends ChangeNotifier {
       const Duration(milliseconds: 1),
       (timer) {
         _stopWatchTimer += const Duration(milliseconds: 1);
-        //TODO remove this
-        if (timer.tick == 5000) {
-          timer.cancel();
-        }
         notifyListeners();
       },
     );

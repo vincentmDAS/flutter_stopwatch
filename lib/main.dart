@@ -47,10 +47,20 @@ class MyHomePage extends ConsumerWidget {
                 style: Theme.of(context).textTheme.headline2,
               ),
               Container(
-                color: Colors.amber,
-                height: MediaQuery.of(context).size.height * 0.2,
-                child: const SingleChildScrollView(
-                  child: Text('Lap'),
+                color: Colors.deepPurpleAccent,
+                height: MediaQuery.of(context).size.height * 0.3,
+                width: MediaQuery.of(context).size.width * 0.9,
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      for (final lapTime in myStopWatch.lapTimes)
+                        ListTile(
+                          leading: Text(
+                              'Lap ${myStopWatch.lapTimes.indexOf(lapTime) + 1}'),
+                          trailing: Text(lapTime),
+                        ),
+                    ],
+                  ),
                 ),
               ),
               Row(
@@ -68,7 +78,7 @@ class MyHomePage extends ConsumerWidget {
                   ),
                   FloatingActionButton(
                     onPressed: () {
-                      //TODO
+                      myStopWatch.lap();
                     },
                     tooltip: 'Lap',
                     child: const Icon(Icons.save),
