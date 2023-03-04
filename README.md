@@ -17,6 +17,6 @@ A simple stopwatch app in Flutter.
 - Integration Testing for all functionality
 - Application of `device_preview` package
 
-## Sample Video in iOS
+## Running in iOS
 
-## Sample Video in Android
+## Running in Android
