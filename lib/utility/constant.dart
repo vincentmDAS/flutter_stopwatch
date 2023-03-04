@@ -28,7 +28,7 @@ class AppStyles {
 
   static const TextStyle titleBoldBlack = TextStyle(
     color: AppColors.mainBlack,
-    fontSize: 75,
+    fontSize: 65,
     fontWeight: FontWeight.w400,
   );
   static const TextStyle buttonMainGreen = TextStyle(

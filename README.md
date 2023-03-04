@@ -14,7 +14,6 @@ A simple stopwatch app in Flutter.
 - Demonstrate `Timer` class and its library
 - Unit Testing for helper format function
 - Widget Testing for initial app state
-- Integration Testing for all functionality
 - Application of `device_preview` package
 
 ## Running in iOS
