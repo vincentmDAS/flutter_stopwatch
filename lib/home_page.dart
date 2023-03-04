@@ -52,7 +52,7 @@ class TimerDisplay extends ConsumerWidget {
     final StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
 
     return Container(
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.26,
       width: MediaQuery.of(context).size.width * 0.9,
       decoration: const BoxDecoration(
         color: AppColors.backgroundGrey,
@@ -79,7 +79,7 @@ class Laps extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final StopWatchNotifier myStopWatch = ref.watch(stopWatchProvider);
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.26,
       width: MediaQuery.of(context).size.width * 0.9,
       child: SingleChildScrollView(
         child: Column(
