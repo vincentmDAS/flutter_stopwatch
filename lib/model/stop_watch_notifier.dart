@@ -40,6 +40,7 @@ class StopWatchNotifier extends ChangeNotifier {
 
   void reset() {
     _stopWatchTimer = Duration.zero;
+    _lapWatchTimer = Duration.zero;
     _timer?.cancel();
     _lapTimes = [];
     _isActive = false;
