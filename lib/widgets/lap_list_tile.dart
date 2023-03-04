@@ -8,8 +8,10 @@ class LapListTile extends StatelessWidget {
     required this.leadingText,
     required this.trailingText,
   });
+
   final String leadingText;
   final String trailingText;
+
   @override
   Widget build(BuildContext context) {
     return Column(

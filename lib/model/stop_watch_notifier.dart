@@ -47,11 +47,8 @@ class StopWatchNotifier extends ChangeNotifier {
       const Duration(milliseconds: 1),
       (timer) {
         _stopWatchTimer += const Duration(milliseconds: 1);
-        updateCurrentLastLapTime();
         notifyListeners();
       },
     );
   }
-
-  void updateCurrentLastLapTime() {}
 }
