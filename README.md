@@ -18,5 +18,7 @@ A simple stopwatch app in Flutter.
 - Application of `device_preview` package
 
 ## Running in iOS
+https://user-images.githubusercontent.com/119713729/222868598-2eda69db-a801-41c6-921c-ed608c085a40.mov
 
 ## Running in Android
+https://user-images.githubusercontent.com/119713729/222868661-bb653f53-4541-4aba-ba49-afe0a97474c6.mp4
