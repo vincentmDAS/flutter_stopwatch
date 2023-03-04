@@ -41,12 +41,13 @@ class StopWatchNotifier extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// This method is called to run the stop watch with 30 milliseconds interval as tested with actual stop watch timer
   void run() {
     _isActive = true;
     _timer = Timer.periodic(
-      const Duration(milliseconds: 1),
+      const Duration(milliseconds: 30),
       (timer) {
-        _stopWatchTimer += const Duration(milliseconds: 1);
+        _stopWatchTimer += const Duration(milliseconds: 30);
         notifyListeners();
       },
     );
