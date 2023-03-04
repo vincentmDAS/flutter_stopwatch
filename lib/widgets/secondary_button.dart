@@ -30,7 +30,7 @@ class SecondaryButton extends StatelessWidget {
         ),
         onPressed: isEnabled ? onPressed : null,
         child: Text(
-          displayText,
+          isEnabled ? displayText : AppStrings.lap,
           style:
               isEnabled ? AppStyles.buttonMainBlack : AppStyles.buttonMainGrey,
         ),
