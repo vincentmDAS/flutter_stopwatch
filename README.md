@@ -19,8 +19,4 @@ A simple stopwatch app in Flutter.
 
 ## Running in iOS
 
-https://user-images.githubusercontent.com/119713729/222859639-e852c91c-7ba7-4c34-80af-323be2f89c0a.mov
-
 ## Running in Android
-
-https://user-images.githubusercontent.com/119713729/222860169-8e71b25b-5f6e-438c-b105-e8ea3b7d2aea.mp4
