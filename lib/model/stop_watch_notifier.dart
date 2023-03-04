@@ -7,6 +7,7 @@ import 'package:flutter_stopwatch/utility/helper.dart';
 class StopWatchNotifier extends ChangeNotifier {
   List<String> _lapTimes = [];
   Duration _stopWatchTimer = Duration.zero;
+  Duration _lapWatchTimer = Duration.zero;
   Timer? _timer;
   bool _isActive = false;
 
@@ -19,12 +20,21 @@ class StopWatchNotifier extends ChangeNotifier {
     return Helper.formatDisplayTime(_stopWatchTimer);
   }
 
+  String get lapTime {
+    if (_lapWatchTimer == Duration.zero) {
+      return AppStrings.zeroTimeDisplay;
+    }
+
+    return Helper.formatDisplayTime(_lapWatchTimer);
+  }
+
   List<String> get lapTimes => _lapTimes;
   bool get isRunning => _timer?.isActive ?? false;
   bool get isActive => _isActive;
 
   void lap() {
-    _lapTimes.add(displayTime);
+    _lapTimes.add(lapTime);
+    _lapWatchTimer = Duration.zero;
     notifyListeners();
   }
 
@@ -48,6 +58,7 @@ class StopWatchNotifier extends ChangeNotifier {
       const Duration(milliseconds: 30),
       (timer) {
         _stopWatchTimer += const Duration(milliseconds: 30);
+        _lapWatchTimer += const Duration(milliseconds: 30);
         notifyListeners();
       },
     );

@@ -88,7 +88,7 @@ class Laps extends ConsumerWidget {
             if (myStopWatch.isActive)
               LapListTile(
                 leadingText: 'Lap ${myStopWatch.lapTimes.length + 1}',
-                trailingText: myStopWatch.displayTime,
+                trailingText: myStopWatch.lapTime,
               ),
             for (final lapTime in myStopWatch.lapTimes.reversed)
               LapListTile(
