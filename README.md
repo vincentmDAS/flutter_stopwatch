@@ -7,6 +7,7 @@ A simple stopwatch app in Flutter.
 - Start and stop functionality same in iOS
 - Display the running and current lap time
 - Display the list of times elapsed
+- Accuracy is tested with actual stop watch timer
 
 ## Technical Specification
 
@@ -23,4 +24,3 @@ https://user-images.githubusercontent.com/119713729/222859639-e852c91c-7ba7-4c34
 ## Running in Android
 
 https://user-images.githubusercontent.com/119713729/222860169-8e71b25b-5f6e-438c-b105-e8ea3b7d2aea.mp4
-
